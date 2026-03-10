@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Monsters - Retro Pocket Adventure</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header>
+        <h1>Pixel Monsters</h1>
+        <p class="subtitle">A Game Boy-style monster-catching adventure</p>
+      </header>
+
+      <section class="hud">
+        <div>Area: <span id="areaName">Pallet Meadow</span></div>
+        <div>Party: <span id="partyStatus">Sproutle Lv5 HP 22/22</span></div>
+        <div>Badges: <span id="badges">0</span> • Balls: <span id="balls">6</span></div>
+      </section>
+
+      <section class="viewport-wrap">
+        <canvas id="gameCanvas" width="640" height="480" aria-label="game canvas"></canvas>
+
+        <div id="battlePanel" class="panel hidden" aria-live="polite">
+          <div class="panel-content">
+            <div class="battle-top">
+              <div class="status-box enemy">
+                <h2 id="enemyName">Wild ???</h2>
+                <div class="hp-line"><span>HP</span> <div class="hp"><div id="enemyHp"></div></div></div>
+              </div>
+            </div>
+
+            <div class="battle-middle">
+              <div class="sprite enemy-sprite" id="enemySprite"></div>
+              <div class="sprite player-sprite" id="playerSprite"></div>
+              <div class="status-box player">
+                <h2 id="playerName">Sproutle Lv5</h2>
+                <div class="hp-line"><span>HP</span> <div class="hp"><div id="playerHp"></div></div></div>
+                <p id="playerHpText">22/22</p>
+              </div>
+            </div>
+
+            <div id="battleText" class="battle-text">A wild monster appeared!</div>
+
+            <div id="actions" class="actions">
+              <button data-action="attack">ATTACK</button>
+              <button data-action="item">THROW BALL</button>
+              <button data-action="switch">SWITCH</button>
+              <button data-action="run">RUN</button>
+            </div>
+
+            <div id="moves" class="moves hidden"></div>
+            <div id="switchMenu" class="moves hidden"></div>
+          </div>
+        </div>
+
+        <div id="dialog" class="panel dialog hidden">
+          <div class="panel-content">
+            <p id="dialogText"></p>
+            <button id="dialogBtn">OK</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <p><strong>Move:</strong> Arrow Keys / WASD</p>
+        <p><strong>Action:</strong> Space (town NPC heal)</p>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
