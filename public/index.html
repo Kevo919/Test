@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paperclip Incidents Dashboard</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <p class="brand-kicker">Control Tower</p>
+          <h1>Paperclip Ops</h1>
+        </div>
+        <nav class="nav">
+          <a class="nav-item is-active" href="#" aria-current="page">Errors</a>
+          <a class="nav-item is-disabled" href="#" aria-disabled="true">Runs</a>
+          <a class="nav-item is-disabled" href="#" aria-disabled="true">Incidents</a>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="workspace-header">
+          <div>
+            <p class="eyebrow">Operational failures</p>
+            <h2>Incident dashboard with guided reruns</h2>
+          </div>
+          <p class="subtle" id="lastUpdated">Last updated: --</p>
+        </header>
+
+        <section class="filters-panel">
+          <form id="filters" class="filters-grid">
+            <label>
+              Status
+              <select name="status" id="statusFilter">
+                <option value="">All</option>
+                <option value="failed">Failed</option>
+                <option value="running">Running</option>
+                <option value="succeeded">Succeeded</option>
+                <option value="queued">Queued</option>
+              </select>
+            </label>
+
+            <label>
+              Workflow
+              <select name="workflow" id="workflowFilter">
+                <option value="">All</option>
+              </select>
+            </label>
+
+            <label>
+              Severity
+              <select name="severity" id="severityFilter">
+                <option value="">All</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </label>
+
+            <label>
+              From
+              <input type="date" name="from" />
+            </label>
+
+            <label>
+              To
+              <input type="date" name="to" />
+            </label>
+
+            <div class="filter-actions">
+              <button type="button" id="clearFilters" class="btn-secondary">
+                Clear
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <div id="flash" class="flash" hidden></div>
+
+        <section class="content-grid">
+          <article class="panel table-panel">
+            <header class="panel-header">
+              <h3>Recent runs</h3>
+              <p class="subtle" id="totalRuns">0 runs</p>
+            </header>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Summary</th>
+                    <th>Workflow</th>
+                    <th>Severity</th>
+                    <th>Timestamp</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="runsTableBody">
+                  <tr>
+                    <td colspan="6" class="empty-state">Loading incidents...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel detail-panel" id="detailPanel">
+            <div class="empty-detail">
+              <h3>Select a failed run</h3>
+              <p>
+                Choose an incident to see error context, technical details, fix
+                steps, and rerun controls.
+              </p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
+
